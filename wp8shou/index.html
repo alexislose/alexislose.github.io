@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WP8手机助手-WP8系统设备管理与数据传输解决方案</title>
+    <meta name="description" content="WP8手机助手是一款专为Windows Phone 8及8.1系统设计的官方及第三方管理工具，支持手机与电脑文件互传、应用安装、系统备份还原及系统刷机功能，帮助用户轻松管理WP8设备数据。">
+    <meta name="keywords" content="WP8手机助手,WP8管理软件,Windows Phone助手,WP8刷机工具,WP8文件传输,诺基亚WP8助手">
+    <style>
+        :root {
+            --primary-color: #00a2e8;
+            --primary-dark: #007bb8;
+            --secondary-color: #333333;
+            --bg-light: #f4f6f9;
+            --bg-white: #ffffff;
+            --text-main: #2c3e50;
+            --text-sub: #666666;
+            --border-color: #e1e4e8;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .btn-download {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-download:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #00a2e8 0%, #007bb8 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-hero {
+            padding: 12px 36px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Features Section */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-sub);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 162, 232, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: var(--text-sub);
+            font-size: 14px;
+        }
+
+        /* Software List Section */
+        .software-list {
+            background-color: var(--bg-white);
+        }
+
+        .software-item {
+            display: flex;
+            align-items: center;
+            padding: 25px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .software-item:last-child {
+            border-bottom: none;
+        }
+
+        .soft-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #eee;
+            border-radius: 10px;
+            margin-right: 25px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #666;
+        }
+
+        .soft-info {
+            flex: 1;
+        }
+
+        .soft-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .soft-info p {
+            color: var(--text-sub);
+            font-size: 14px;
+        }
+
+        .soft-btn {
+            padding: 8px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        .soft-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Guide Section */
+        .guide-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .guide-steps {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .guide-tips {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .step-card {
+            background: var(--bg-white);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .step-card h4 {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .step-card p {
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        .tip-box {
+            background-color: #eaf6ff;
+            padding: 25px;
+            border-radius: var(--radius);
+        }
+
+        .tip-box h4 {
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .tip-list li {
+            margin-bottom: 10px;
+            font-size: 14px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .tip-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--bg-white);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 20px 0;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-main);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--text-sub);
+            font-size: 15px;
+        }
+
+        .faq-answer p {
+            padding-bottom: 20px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: "-";
+        }
+
+        .faq-item.active .faq-question::before {
+            content: "+";
+        }
+
+        .faq-question::before {
+            content: "+";
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: #b0b0b0;
+            padding: 60px 0 20px;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+            }
+
+            .software-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .soft-icon {
+                margin-bottom: 15px;
+            }
+
+            .soft-info {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                WP8助手<span>Pro</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#features" class="active">功能特点</a></li>
+                    <li><a href="#software">软件列表</a></li>
+                    <li><a href="#guide">使用指南</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+            <a href="#download" class="btn-download">立即下载</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>WP8手机助手 - 管理您的Windows Phone设备</h1>
+                <p>为Windows Phone 8及8.1系统打造的综合性管理工具。支持文件传输、应用管理、系统备份与刷机，让旧设备焕发新生。</p>
+                <div class="hero-btns">
+                    <a href="#download" class="btn-hero btn-primary">下载助手</a>
+                    <a href="#guide" class="btn-hero btn-outline">查看教程</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>核心功能</h2>
+                    <p>全方位满足您的设备管理需求</p>
+                </div>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </div>
+                        <h3>文件互传与备份</h3>
+                        <p>轻松实现手机与电脑之间的图片、视频、文档互传，支持全量备份联系人、短信及重要数据，防止数据丢失。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                        </div>
+                        <h3>应用管理与安装</h3>
+                        <p>无需连接商店，直接从电脑安装XAP/APPX应用文件，批量卸载无用应用，优化系统运行环境。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        </div>
+                        <h3>系统刷机与更新</h3>
+                        <p>提供官方固件下载与刷机工具，支持恢复出厂设置、系统版本回退及刷机教程，解决系统卡顿问题。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Software List Section -->
+        <section id="software" class="section software-list">
+            <div class="container">
+                <div class="section-title">
+                    <h2>常用WP8手机助手推荐</h2>
+                    <p>根据设备型号和系统版本选择合适的工具</p>
+                </div>
+                
+                <div class="software-item">
+                    <div class="soft-icon">W</div>
+                    <div class="soft-info">
+                        <h3>Windows Phone Device Recovery Tool</h3>
+                        <p>微软官方工具，适用于所有WP8设备刷机与系统恢复，功能最稳定。</p>
+                    </div>
+                    <a href="#" class="soft-btn">下载微软工具</a>
+                </div>
+
+                <div class="software-item">
+                    <div class="soft-icon">N</div>
+                    <div class="soft-info">
+                        <h3>Nokia Suite</h3>
+                        <p>诺基亚官方PC套件，专为早期诺基亚WP8手机设计，支持照片流同步。</p>
+                    </div>
+                    <a href="#" class="soft-btn">下载诺基亚套件</a>
+                </div>
+
+                <div class="software-item">
+                    <div class="soft-icon">D</div>
+                    <div class="soft-info">
+                        <h3>My Phone</h3>
+                        <p>简易版管理工具，专注于联系人同步与短信备份，操作界面直观。</p>
+                    </div>
+                    <a href="#" class="soft-btn">下载My Phone</a>
+                </div>
+
+                <div class="software-item">
+                    <div class="soft-icon">S</div>
+                    <div class="soft-info">
+                        <h3>Zune PC</h3>
+                        <p>Windows Phone 8的标配媒体管理软件，支持媒体库同步与设备管理。</p>
+                    </div>
+                    <a href="#" class="soft-btn">下载Zune</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guide Section -->
+        <section id="guide" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>使用指南</h2>
+                    <p>快速上手WP8手机助手的操作流程</p>
+                </div>
+                <div class="guide-container">
+                    <div class="guide-steps">
+                        <div class="step-card">
+                            <h4>1. 连接设备</h4>
+                            <p>使用原装或认证的USB数据线将WP8手机连接至电脑。确保手机开启“USB调试”或“文件传输”模式。</p>
+                        </div>
+                        <div class="step-card">
+                            <h4>2. 安装驱动</h4>
+                            <p>运行WP8手机助手安装包，软件将自动检测并安装必要的Windows驱动程序，确保设备被电脑识别。</p>
+                        </div>
+                        <div class="step-card">
+                            <h4>3. 选择功能</h4>
+                            <p>在助手主界面选择所需功能。如需传输文件，点击“文件管理”；如需刷机，请进入“工具箱”选择固件。</p>
+                        </div>
+                        <div class="step-card">
+                            <h4>4. 执行操作</h4>
+                            <p>按照屏幕提示点击“下一步”或“确认”。刷机过程中请勿断开连接，等待进度条完成。</p>
+                        </div>
+                    </div>
+                    <aside class="guide-tips">
+                        <div class="tip-box">
+                            <h4>注意事项</h4>
+                            <ul class="tip-list">
+                                <li>刷机前请确保电量充足（建议50%以上）。</li>
+                                <li>部分第三方助手可能包含广告，请认准官方下载源。</li>
+                                <li>刷机有风险，操作前建议备份重要数据。</li>
+                                <li>Windows 10/11系统可能需要兼容模式运行旧版助手。</li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section faq-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>常见问题</h2>
+                    <p>关于WP8手机助手的使用疑问解答</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question">WP8手机助手在Windows 10上无法识别手机怎么办？</button>
+                        <div class="faq-answer">
+                            <p>Windows 10对旧版驱动支持有限。建议下载并安装Windows Phone USB Driver，或在设备管理器中手动更新驱动程序。部分情况下需要使用“兼容模式”运行旧版软件。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">如何备份WP8手机中的联系人？</button>
+                        <div class="faq-answer">
+                            <p>可以使用微软官方的“My Phone”服务，或者使用“诺基亚 Suite”将联系人导出为CSV文件保存到电脑上。第三方助手通常也提供“导出联系人”功能。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">刷机后手机变砖了还能救回来吗？</button>
+                        <div class="faq-answer">
+                            <p>可以使用微软官方的“Windows Phone Device Recovery Tool”连接电脑，它会自动下载正确的固件并尝试恢复手机系统。此过程通常能恢复手机功能。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">WP8手机助手支持哪些文件格式传输？</button>
+                        <div class="faq-answer">
+                            <p>支持通用的文档格式（如PDF, DOCX, XLSX）、图片格式（JPG, PNG, GIF）以及视频格式（MP4, AVI）。部分媒体文件可能需要使用Zune进行同步。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>WP8助手</h4>
+                    <p style="font-size: 14px; color: #888;">专注于Windows Phone 8系统的数据管理与维护，为老用户提供持续的技术支持与服务。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#features">功能介绍</a></li>
+                        <li><a href="#software">软件下载</a></li>
+                        <li><a href="#guide">刷机教程</a></li>
+                        <li><a href="#faq">帮助中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>支持系统</h4>
+                    <ul>
+                        <li>Windows Phone 8.0</li>
+                        <li>Windows Phone 8.1</li>
+                        <li>Windows 10 Mobile (部分功能)</li>
+                        <li>Windows 7 / 8 / 10 / 11</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 WP8手机助手资源站. All Rights Reserved. 本站为非营利性技术分享平台。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <script>
+        // FAQ Accordion Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Smooth Scroll for Anchor Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+                  </html>
