@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麦蒂-TMSCore 职业生涯数据、经典时刻与深度档案</title>
+    <meta name="description" content="麦蒂(T-MAC)官方资料库，收录麦蒂职业生涯数据、巅峰时刻、经典战役及生涯高光集锦。深度解析麦蒂得分爆发力与篮球哲学，回顾T-MAC的传奇历程。">
+    <meta name="keywords" content="麦蒂, T-MAC, 麦迪, 篮球, NBA, 职业生涯, 麦蒂集锦, 魔术队, 火箭队, 35秒13分">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #e74c3c; /* 火箭红 */
+            --secondary-color: #2c3e50; /* 深蓝 */
+            --accent-color: #f1c40f; /* 金色 */
+            --text-main: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --spacing-unit: 16px;
+            --container-width: 1200px;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--secondary-color);
+            font-size: 16px;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .cta-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .cta-btn:hover {
+            background-color: #c0392b;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #1a252f 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 20% 50%, rgba(231, 76, 60, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .hero-tags span {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin: 0 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 60px 0;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: var(--secondary-color);
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+        }
+
+        .view-all {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Career Data Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: var(--bg-white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Highlight Section */
+        .highlight-section {
+            background-color: var(--bg-white);
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+        }
+
+        .timeline-card {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 20px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-card::after {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--bg-light);
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .timeline-year {
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .video-placeholder {
+            background-color: #000;
+            border-radius: var(--border-radius);
+            height: 100%;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .video-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            z-index: 2;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .play-icon {
+            width: 0; 
+            height: 0; 
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 18px solid var(--primary-color);
+            margin-left: 4px;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-white);
+            box-shadow: var(--shadow);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table th {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover td {
+            background-color: #f9f9f9;
+        }
+
+        .team-logo {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: #bdc3c7;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+            }
+            
+            nav ul {
+                margin: 15px 0;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .highlight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo">
+                TM<span>Core</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#stats">生涯数据</a></li>
+                    <li><a href="#highlights">经典时刻</a></li>
+                    <li><a href="#comparison">生涯对比</a></li>
+                </ul>
+            </nav>
+            <a href="#highlights" class="cta-btn">观看集锦</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Tracy McGrady</h1>
+                <p>以天赋定义篮球，用天赋书写传奇。麦蒂，永远的T-MAC，NBA历史上最伟大的得分手之一。</p>
+                <div class="hero-tags">
+                    <span>8次全明星</span>
+                    <span>2届得分王</span>
+                    <span>35秒13分</span>
+                    <span>名人堂</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="stats" class="container">
+            <div class="section-header">
+                <h2 class="section-title">职业生涯核心数据</h2>
+                <a href="#" class="view-all">查看完整档案 &rarr;</a>
+            </div>
+            <div class="stats-grid">
+                <article class="stat-card">
+                    <div class="stat-value">18.1</div>
+                    <div class="stat-label">场均得分 (生涯)</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-value">5.5</div>
+                    <div class="stat-label">场均篮板</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-value">4.0</div>
+                    <div class="stat-label">场均助攻</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-value">1.2</div>
+                    <div class="stat-label">场均抢断</div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Highlights Section -->
+        <section id="highlights" class="highlight-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">麦蒂时刻</h2>
+                </div>
+                <div class="highlight-grid">
+                    <div class="timeline">
+                        <div class="timeline-card">
+                            <div class="timeline-year">2004年 12月 9日</div>
+                            <h3 class="timeline-title">休斯顿火箭队 vs 圣安东尼奥马刺队</h3>
+                            <p class="timeline-desc">NBA历史上最伟大的个人表演之一。麦蒂在比赛最后35秒内连得13分，包括三个不可思议的三分球和一次后撤步跳投，带领火箭完成不可能的逆转。</p>
+                        </div>
+                        <div class="timeline-card">
+                            <div class="timeline-year">2002年 3月 10日</div>
+                            <h3 class="timeline-title">奥兰多魔术队 vs 芝加哥公牛队</h3>
+                            <p class="timeline-desc">单场比赛轰下62分，追平了威尔特·张伯伦保持的队史单场得分纪录。这是麦蒂个人天赋的极致体现，展现了无与伦比的得分爆发力。</p>
+                        </div>
+                        <div class="timeline-card">
+                            <div class="timeline-year">2000年 全明星赛</div>
+                            <h3 class="timeline-title">扣篮大赛冠军</h3>
+                            <p class="timeline-desc">在扣篮大赛中，麦蒂在最后时刻凭借一记不可思议的空中转体360度扣篮，力压卡特和弗朗西斯，夺得冠军，震惊篮坛。</p>
+                        </div>
+                    </div>
+                    <div class="video-wrapper">
+                        <div class="video-placeholder">
+                            <img src="https://picsum.photos/seed/tmacgame/600/400" alt="麦蒂比赛集锦封面">
+                            <div class="play-btn">
+                                <div class="play-icon"></div>
+                            </div>
+                            <p style="position: absolute; bottom: 20px; z-index: 2;">重温 35秒13分 经典时刻</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section id="comparison" class="container">
+            <div class="section-header">
+                <h2 class="section-title">生涯球队对比</h2>
+            </div>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>赛季</th>
+                        <th>球队</th>
+                        <th>场均得分</th>
+                        <th>最佳战绩</th>
+                        <th>个人荣誉</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1997-2000</td>
+                        <td class="team-logo">奥兰多魔术</td>
+                        <td>23.4</td>
+                        <td>50胜32负</td>
+                        <td>全明星 (3次)</td>
+                    </tr>
+                    <tr>
+                        <td>2000-2004</td>
+                        <td class="team-logo">休斯顿火箭</td>
+                        <td>25.7</td>
+                        <td>51胜31负</td>
+                        <td>得分王 (2次)</td>
+                    </tr>
+                    <tr>
+                        <td>2004-2010</td>
+                        <td class="team-logo">纽约尼克斯/底特律活塞等</td>
+                        <td>15.6</td>
+                        <td>45胜37负</td>
+                        <td>全明星 (3次)</td>
+                    </tr>
+                    <tr>
+                        <td>2010-2013</td>
+                        <td class="team-logo">亚特兰大老鹰/圣安东尼奥马刺</td>
+                        <td>12.3</td>
+                        <td>49胜33负</td>
+                        <td>总冠军 (1次)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- FAQ Section -->
+        <section style="background-color: #e9ecef;">
+            <div class="container" style="max-width: 800px;">
+                <div class="section-header">
+                    <h2 class="section-title">常见问题</h2>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: var(--shadow);">
+                    <details style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                        <summary style="font-weight: 600; cursor: pointer;">麦蒂是篮球名人堂成员吗？</summary>
+                        <p style="margin-top: 10px; color: var(--text-light);">是的，麦蒂于2017年正式入选奈史密斯篮球名人堂。</p>
+                    </details>
+                    <details style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                        <summary style="font-weight: 600; cursor: pointer;">麦蒂的35秒13分具体发生了什么？</summary>
+                        <p style="margin-top: 10px; color: var(--text-light);">在比赛最后35秒，火箭队落后3分。麦蒂先是投中3分球，随后抢断马刺球权再投进3分，最后两罚全中，完成绝杀。</p>
+                    </details>
+                    <details style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                        <summary style="font-weight: 600; cursor: pointer;">麦蒂和科比·布莱恩特谁的得分能力更强？</summary>
+                        <p style="margin-top: 10px; color: var(--text-light)；">两人都是历史顶级的得分手。麦蒂的得分爆发力和技巧更为华丽，而科比的得分手段更加全面且持久。这取决于个人偏好和评价标准。</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>TMCore</h4>
+                    <p style="font-size: 14px; color: #95a5a6;">致力于记录和传播篮球巨星麦蒂的职业生涯数据与精彩瞬间，为球迷提供最专业的资料库。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#stats">生涯数据</a></li>
+                        <li><a href="#highlights">经典集锦</a></li>
+                        <li><a href="#comparison">荣誉列表</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>相关资讯</h4>
+                    <ul>
+                        <li><a href="#">NBA历史得分榜</a></li>
+                        <li><a href="#">NBA 75大球星</a></li>
+                        <li><a href="#">火箭队队史</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TMCore 篮球资料库. All Rights Reserved. 本站为非官方粉丝站点，仅用于资料整理与展示。</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
