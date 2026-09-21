@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cf火麒麟-火麒麟系列武器详解与获取攻略</title>
+    <meta name="description" content="本站提供CF穿越火线中火麒麟系列武器的详细属性解析、外观展示、获取途径及实战技巧攻略。帮助玩家了解火麒麟的强化机制、皮肤特效及在生化模式中的表现。">
+    <meta name="keywords" content="cf火麒麟,穿越火线火麒麟,火麒麟获取,火麒麟属性,CF生化武器">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-red: #d93025;
+            --primary-dark-red: #a71d2a;
+            --bg-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-main: #202124;
+            --text-secondary: #5f6368;
+            --border-color: #dadce0;
+            --gold-accent: #fbbc04;
+            --shadow-sm: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-red);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-red);
+        }
+
+        .header-actions {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .header-actions {
+                display: flex;
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 8px 16px;
+                border-radius: 4px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                cursor: pointer;
+                border: none;
+                transition: all 0.2s;
+            }
+
+            .btn-primary {
+                background-color: var(--primary-red);
+                color: white;
+            }
+
+            .btn-primary:hover {
+                background-color: var(--primary-dark-red);
+            }
+
+            .btn-outline {
+                border: 1px solid var(--border-color);
+                background: white;
+                color: var(--text-main);
+            }
+
+            .btn-outline:hover {
+                border-color: var(--text-secondary);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c0a0a 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 50% 50%, rgba(217, 48, 37, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--gold-accent);
+            text-shadow: 0 0 20px rgba(251, 188, 4, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-bottom: 32px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+        }
+
+        .stat-item strong {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--gold-accent);
+        }
+
+        .stat-item span {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-red);
+            margin-top: 8px;
+            border-radius: 2px;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            max-width: 700px;
+        }
+
+        /* Weapon Showcase */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-image {
+            height: 200px;
+            background-color: #ddd;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary-red);
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background-color: #f1f3f4;
+            color: var(--text-secondary);
+        }
+
+        .card-footer {
+            margin-top: auto;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Attributes Table */
+        .attributes-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            box-shadow: var(--shadow-sm);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .attributes-table th, .attributes-table td {
+            padding: 16px 24px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .attributes-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: var(--text-main);
+            width: 30%;
+        }
+
+        .attributes-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .attributes-table tr:hover td {
+            background-color: #fafafa;
+        }
+
+        /* Guide List */
+        .guide-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .guide-item {
+            display: flex;
+            gap: 20px;
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            align-items: flex-start;
+        }
+
+        .guide-icon {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(217, 48, 37, 0.1);
+            color: var(--primary-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .guide-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .guide-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            margin-bottom: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            background-color: #fff;
+            transition: background-color 0.2s;
+        }
+
+        .faq-question:hover {
+            background-color: #f8f9fa;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px 20px;
+            color: var(--text-secondary);
+            display: none;
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary-red);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1f1f1f;
+            color: #9aa0a6;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .guide-item {
+                flex-direction: column;
+            }
+            
+            .guide-icon {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                CF<span>攻略站</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#showcase">火麒麟系列</a></li>
+                    <li><a href="#attributes">属性详解</a></li>
+                    <li><a href="#guide">获取攻略</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline">登录</a>
+                <a href="#" class="btn btn-primary">加入社区</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>穿越火线 <span class="highlight">CF火麒麟</span> 系列全解析</h1>
+                <p>作为穿越火线中最具传奇色彩的系列武器，火麒麟凭借其霸气的外观、强大的属性以及独特的生化特效，成为无数玩家梦寐以求的伙伴。深入了解火麒麟的每一款衍生型号，助您在战场上所向披靡。</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <strong>8</strong>
+                        <span>经典型号</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>100%</strong>
+                        <span>生化伤害加成</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>30+</strong>
+                        <span>专属皮肤</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weapon Showcase -->
+        <section id="showcase" class="container">
+            <div class="section-header">
+                <h2 class="section-title">火麒麟系列一览</h2>
+                <p class="section-desc">从最初的黑色火麒麟到后续的雷神、黑龙、修罗等衍生型号，每一款都拥有独特的属性和外观设计。</p>
+            </div>
+            
+            <div class="showcase-grid">
+                <!-- Card 1 -->
+                <article class="card">
+                    <div class="card-image">
+                        <span class="card-badge">MVP</span>
+                        <img src="https://picsum.photos/seed/cf_black/400/300" alt="黑色火麒麟">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">黑色火麒麟</h3>
+                        <p class="card-desc">系列起源。拥有极高的射速和精准度，在生化模式中具有极高的杀伤力，是许多老玩家的信仰之枪。</p>
+                        <div class="card-tags">
+                            <span class="tag">步枪</span>
+                            <span class="tag">MVP</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-outline btn-block">查看详情</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="card">
+                    <div class="card-image">
+                        <span class="card-badge">热门</span>
+                        <img src="https://picsum.photos/seed/cf_lightning/400/300" alt="雷神">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">雷神</h3>
+                        <p class="card-desc">雷电之魂。拥有特殊的雷电粒子特效，切枪速度快，枪身带有自动瞄准功能，操作手感极佳。</p>
+                        <div class="card-tags">
+                            <span class="tag">步枪</span>
+                            <span class="tag">自动瞄准</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-outline btn-block">查看详情</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="card">
+                    <div class="card-image">
+                        <span class="card-badge">稀有</span>
+                        <img src="https://picsum.photos/seed/cf_dragon/400/300" alt="黑龙">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">黑龙</h3>
+                        <p class="card-desc">黑龙之怒。枪身修长霸气，拥有独特的龙纹雕刻，拥有特殊的换弹动画，极具收藏价值。</p>
+                        <div class="card-tags">
+                            <span class="tag">步枪</span>
+                            <span class="tag">收藏</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-outline btn-block">查看详情</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="card">
+                    <div class="card-image">
+                        <span class="card-badge">PVP</span>
+                        <img src="https://picsum.photos/seed/cf_slayer/400/300" alt="修罗">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">修罗</h3>
+                        <p class="card-desc">修罗之影。专为PVP模式打造，拥有高精准度和特殊的切枪效果，是竞技场中的强力选择。</p>
+                        <div class="card-tags">
+                            <span class="tag">步枪</span>
+                            <span class="tag">竞技</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-outline btn-block">查看详情</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Attributes Section -->
+        <section id="attributes" style="background-color: #f0f0f0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">核心属性对比</h2>
+                    <p class="section-desc">了解不同型号火麒麟在射速、换弹、精准度等方面的具体数据差异。</p>
+                </div>
+
+                <table class="attributes-table">
+                    <tbody>
+                        <tr>
+                            <th>武器类型</th>
+                            <td>AR步枪 (M4A1系列)</td>
+                        </tr>
+                        <tr>
+                            <th>特殊属性</th>
+                            <td>火麒麟系列均拥有独特的生化强化属性，部分型号拥有切枪加速、自动瞄准等功能。</td>
+                        </tr>
+                        <tr>
+                            <th>精准度</th>
+                            <td>★★★★★ (极高) - 枪身稳定，后坐力极小，适合远距离点射。</td>
+                        </tr>
+                        <tr>
+                            <th>射速</th>
+                            <td>★★★★☆ (快) - 持续输出能力强，扫射流畅。</td>
+                        </tr>
+                        <tr>
+                            <th>换弹速度</th>
+                            <td>★★★★☆ (快) - 独特的换弹动画，缩短战斗间隙。</td>
+                        </tr>
+                        <tr>
+                            <th>重量</th>
+                            <td>★★★☆☆ (中等) - 便于移动，不影响跳跃和蹲伏。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Guide Section -->
+        <section id="guide" class="container">
+            <div class="section-header">
+                <h2 class="section-title">获取与使用攻略</h2>
+                <p class="section-desc">如何获得心仪的火麒麟？不同模式下该如何发挥其最大威力？</p>
+            </div>
+
+            <div class="guide-list">
+                <div class="guide-item">
+                    <div class="guide-icon">💰</div>
+                    <div class="guide-content">
+                        <h3>获取途径解析</h3>
+                        <p>火麒麟系列武器通常通过穿越火线官方商城购买（点券/钻石）、参与活动赠送、或者通过军需系统抽取获得。建议关注官方节日活动，这是获取免费武器的最佳机会。</p>
+                    </div>
+                </div>
+
+                <div class="guide-item">
+                    <div class="guide-icon">⚔️</div>
+                    <div class="guide-content">
+                        <h3>生化模式实战技巧</h3>
+                        <p>在生化模式中，火麒麟的生化伤害加成是核心优势。建议使用“点射”而非“扫射”，以减少子弹浪费。利用其切枪速度快的特点，在敌人靠近时快速切换近战武器进行反击。</p>
+                    </div>
+                </div>
+
+                <div class="guide-item">
+                    <div class="guide-icon">🎮</div>
+                    <div class="guide-content">
+                        <h3>PVP竞技场建议</h3>
+                        <p>对于竞技模式，推荐使用修罗或雷神等特定型号。雷神的自动瞄准功能在近身遭遇战中非常实用，而修罗则更侧重于精准的点控。请根据个人习惯选择合适的配件和枪法风格。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" style="background-color: #f0f0f0;">
+            <div class="container faq-container">
+                <div class="section-header">
+                    <h2 class="section-title">常见问题解答</h2>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">火麒麟系列武器可以永久拥有吗？</div>
+                    <div class="faq-answer">是的，火麒麟系列所有型号均支持直接购买永久版本，也可以通过军需系统抽取永久武器。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">雷神的自动瞄准功能如何开启？</div>
+                    <div class="faq-answer">雷神的自动瞄准功能是内置的，无需额外设置。当敌人进入一定射程内时，枪口会自动指向敌人，但不会自动开火，仍需玩家手动点击射击。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">火麒麟在生化模式中有无敌属性吗？</div>
+                    <div class="faq-answer">没有无敌属性。虽然火麒麟拥有极高的生化伤害加成，但在面对拥有“幽灵之刃”的强力幽灵角色时，仍需注意走位和躲避。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">不同型号的火麒麟属性完全一样吗？</div>
+                    <div class="faq-answer">不完全一样。虽然它们都是M4A1系列，但在特殊功能（如切枪、换弹、瞄准）和外观特效上有所区别，具体需参考各型号的详细属性表。</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <p style="font-size: 0.9rem; line-height: 1.6;">本站致力于为穿越火线玩家提供最全面、最及时的武器攻略、属性分析及游戏资讯。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速导航</h4>
+                    <ul>
+                        <li><a href="#">武器大全</a></li>
+                        <li><a href="#">游戏攻略</a></li>
+                        <li><a href="#">活动中心</a></li>
+                        <li><a href="#">社区论坛</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>友情链接</h4>
+                    <ul>
+                        <li><a href="#">腾讯游戏</a></li>
+                        <li><a href="#">CF官网</a></li>
+                        <li><a href="#">游戏资料库</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 CF攻略站 版权所有. 本站内容仅供玩家参考，非腾讯官方网站。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple FAQ Accordion Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
