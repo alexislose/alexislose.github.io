@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CF莫言专题页面，详细介绍CF穿越火线游戏中的莫言角色，包括角色背景、技能特点、获取方式、属性对比以及实战攻略，是CF玩家必看的角色资料站。">
+    <meta name="keywords" content="CF莫言,穿越火线莫言,CF角色莫言,CF角色介绍,CF角色攻略">
+    <title>CF莫言-穿越火线莫言角色详解与属性攻略</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #d32f2f;
+            --secondary-color: #fbc02d;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent-green: #4caf50;
+            --accent-blue: #2196f3;
+            --spacing-unit: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-bottom: 2px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--spacing-unit) 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+            background-color: rgba(211, 47, 47, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 450px;
+            background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(40,40,40,0.8)), url('https://picsum.photos/seed/cf_moyan_hero/1600/900') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            border-bottom: 4px solid var(--primary-color);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-tag {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4px 12px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 16px;
+            border-radius: 2px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #b71c1c;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--text-main);
+            margin-left: 10px;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background-color: transparent;
+        }
+
+        /* Role Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Main Content Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 5px solid var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .info-card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        .info-card h3 {
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .info-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        .comparison-table th {
+            background-color: #2c2c2c;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #252525;
+        }
+
+        .stat-bar-bg {
+            background-color: #333;
+            height: 8px;
+            border-radius: 4px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            background-color: var(--accent-green);
+            border-radius: 4px;
+        }
+
+        /* Sidebar */
+        aside .sidebar-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #333;
+        }
+
+        .sidebar-list li {
+            margin-bottom: 12px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 12px;
+        }
+
+        .sidebar-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .sidebar-list a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .sidebar-list span {
+            font-size: 0.8rem;
+            background-color: #333;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* Tips */
+        .tips-list {
+            counter-reset: tip-counter;
+        }
+
+        .tips-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+
+        .tips-list li::before {
+            counter-increment: tip-counter;
+            content: counter(tip-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            .header-inner {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                gap: 10px;
+                font-size: 0.9rem;
+            }
+            .stats-grid {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">CF<span>莫言</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">角色主页</a></li>
+                    <li><a href="#skills">技能详解</a></li>
+                    <li><a href="#comparison">属性对比</a></li>
+                    <li><a href="#guide">实战攻略</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-tag">CF角色</span>
+                    <h1>CF莫言：烈焰之魂，掌控战局</h1>
+                    <p>莫言作为穿越火线中的高人气角色，拥有独特的火焰属性与强化属性，是生化模式与团队竞技中的核心战力。</p>
+                    <div>
+                        <a href="#guide" class="btn">查看实战攻略</a>
+                        <a href="#comparison" class="btn btn-outline">属性对比</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Grid -->
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">100</div>
+                    <div class="stat-label">火焰伤害加成</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">10%</div>
+                    <div class="stat-label">生化弹夹增加</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">1.25</div>
+                    <div class="stat-label">受击子弹减少</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">角色特性</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container main-layout">
+            <!-- Left Content -->
+            <div class="content-area">
+                
+                <!-- Introduction -->
+                <section id="intro">
+                    <h2 class="section-title">角色背景与简介</h2>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>起源</h3>
+                            <p>莫言是穿越火线中极具神秘色彩的女性角色，其原型源自特种部队中的精英战术专家。她性格冷静，擅长在极端环境下进行战术指挥与火力压制。</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>形象设计</h3>
+                            <p>角色外观融合了未来科技与东方美学，标志性的火焰纹身与战术护甲设计，使其在战场上极具辨识度。不同版本（如莫言-烈焰之心）拥有不同的配色方案。</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>定位</h3>
+                            <p>莫言属于全能型角色，既具备普通角色的基础属性，又拥有专属的生化模式强化技能，是追求高生存能力玩家的首选。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Skills Section -->
+                <section id="skills">
+                    <h2 class="section-title">技能与特性详解</h2>
+                    <div class="info-card">
+                        <h3>被动技能：烈焰之拥</h3>
+                        <p>莫言的被动技能使其在生化模式中拥有更高的伤害输出能力。当她击杀僵尸或被僵尸攻击时，会触发火焰特效，对周围敌人造成额外伤害。</p>
+                        <br>
+                        <h3>主动技能：战术闪光</h3>
+                        <p>在团队竞技或爆破模式中，莫言可使用战术闪光弹。该闪光弹具有更远的投掷距离和更短的致盲时间，帮助玩家在转点或突围时占据先机。</p>
+                        <br>
+                        <h3>强化属性：受击子弹减少</h3>
+                        <p>莫言拥有“受击子弹减少”特性，能够有效降低在生化模式中承受的子弹伤害，大幅提升生存率。</p>
+                    </div>
+                </section>
+
+                <!-- Comparison Section -->
+                <section id="comparison">
+                    <h2 class="section-title">莫言 vs 其他角色</h2>
+                    <div style="overflow-x: auto;">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>CF莫言</th>
+                                    <th>猎手</th>
+                                    <th>芙洛拉</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>生化伤害加成</td>
+                                    <td><strong>100% (高)</strong></td>
+                                    <td>0%</td>
+                                    <td>50%</td>
+                                </tr>
+                                <tr>
+                                    <td>受击子弹减少</td>
+                                    <td><strong>1.25</strong></td>
+                                    <td>1.0</td>
+                                    <td>1.0</td>
+                                </tr>
+                                <tr>
+                                    <td>生化弹夹增加</td>
+                                    <td><strong>10%</strong></td>
+                                    <td>5%</td>
+                                    <td>15%</td>
+                                </tr>
+                                <tr>
+                                    <td>角色特性</td>
+                                    <td>火焰伤害、战术闪光</td>
+                                    <td>生命恢复、近战强化</td>
+                                    <td>生命恢复、生化加成</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Guide Section -->
+                <section id="guide">
+                    <h2 class="section-title">实战攻略与搭配建议</h2>
+                    <div class="info-card">
+                        <h3>模式推荐：生化金字塔</h3>
+                        <p>在生化金字塔模式中，莫言的“受击子弹减少”特性至关重要。建议玩家优先选择带有“火焰伤害”的武器（如烈焰骑士系列），在救援队友或守点时能打出更高的输出。</p>
+                        
+                        <br>
+                        <h3>模式推荐：团队竞技</h3>
+                        <p>在团队竞技中，莫言的“战术闪光”技能可用于快速转点或偷袭。建议配合高射速步枪使用，利用闪光弹的掩护瞬间击杀多名敌人。</p>
+
+                        <br>
+                        <h3>搭配建议</h3>
+                        <ul class="tips-list">
+                            <li>搭配“烈焰骑士”系列枪械，最大化火焰伤害输出。</li>
+                            <li>搭配“雷神”或“黑龙”系列枪械，弥补生化模式下近战攻击的不足。</li>
+                            <li>佩戴“生命值上限”增幅道具，进一步提升生存能力。</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Sidebar -->
+            <aside>
+                <div class="sidebar-card">
+                    <h3>热门武器推荐</h3>
+                    <ul class="sidebar-list">
+                        <li><a href="#">烈焰骑士 <span>生化</span></a></li>
+                        <li><a href="#">黑龙骑士 <span>团队</span></a></li>
+                        <li><a href="#">雷神 <span>爆破</span></a></li>
+                        <li><a href="#">火麒麟 <span>综合</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>角色获取方式</h3>
+                    <ul class="sidebar-list">
+                        <li><a href="#">CF商城购买</a></li>
+                        <li><a href="#">活动兑换</a></li>
+                        <li><a href="#">角色宝箱</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>玩家评论</h3>
+                    <p style="font-size: 0.9rem; color: #ccc; margin-bottom: 10px;">"莫言的受击减少真的很实用，在生化里站桩输出无敌。"</p>
+                    <p style="font-size: 0.9rem; color: #ccc;">"闪光弹技能在团队模式里经常能偷到人头，性价比很高。"</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>CF莫言资料站</h4>
+                    <p style="color: #666; font-size: 0.9rem;">
+                        本站为玩家提供最全的穿越火线角色资料、属性对比及实战攻略。所有游戏内容版权归腾讯游戏所有。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速导航</h4>
+                    <ul>
+                        <li><a href="#">角色大全</a></li>
+                        <li><a href="#">武器图鉴</a></li>
+                        <li><a href="#">游戏攻略</a></li>
+                        <li><a href="#">视频解说</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>相关链接</h4>
+                    <ul>
+                        <li><a href="#">穿越火线官网</a></li>
+                        <li><a href="#">CF活动中心</a></li>
+                        <li><a href="#">玩家社区</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 CF莫言专题页. 非腾讯官方网站，仅供玩家参考与交流.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
