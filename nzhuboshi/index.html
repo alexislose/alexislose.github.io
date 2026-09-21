@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="女主播视频 - 热门女主播直播回放、才艺展示与互动社区。提供高清画质、分类浏览及实时弹幕互动体验，发现更多精彩直播内容。">
+    <meta name="keywords" content="女主播视频,直播回放,才艺直播,互动社区,高清直播">
+    <title>女主播视频-热门直播回放与才艺互动平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff4757;
+            --secondary-color: #2f3542;
+            --bg-color: #f1f2f6;
+            --card-bg: #ffffff;
+            --text-main: #2f3542;
+            --text-sub: #747d8c;
+            --border-radius: 12px;
+            --spacing-unit: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-main);
+            transition: color 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .search-bar {
+            display: flex;
+            background: var(--bg-color);
+            border-radius: 20px;
+            padding: 6px 16px;
+            align-items: center;
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 200px;
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-sub);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .tag:hover {
+            background: rgba(255,255,255,0.4);
+        }
+
+        /* Main Layout */
+        .main-container {
+            max-width: 1200px;
+            margin: 24px auto;
+            padding: 0 var(--spacing-unit);
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 24px;
+        }
+
+        /* Sidebar */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-card {
+            background: var(--card-bg);
+            padding: 16px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--bg-color);
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .category-list li:last-child {
+            border-bottom: none;
+        }
+
+        .category-list a {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-sub);
+            font-size: 14px;
+        }
+
+        .category-list a:hover {
+            color: var(--primary-color);
+        }
+
+        .live-count {
+            background: #eccc68;
+            color: #fff;
+            font-size: 10px;
+            padding: 1px 4px;
+            border-radius: 4px;
+        }
+
+        /* Content Area */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .section-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .more-link {
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        .more-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Grid Layout */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .thumbnail-container {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background: #000;
+        }
+
+        .thumbnail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .live-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        .duration-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        .card-info {
+            padding: 12px;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .author-avatar {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-name {
+            max-width: 80px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .view-count {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Category Highlight Section */
+        .highlight-section {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .highlight-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 180px;
+            cursor: pointer;
+        }
+
+        .highlight-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .highlight-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .highlight-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px 12px 12px;
+            color: white;
+        }
+
+        .highlight-title {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .highlight-subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: #a4b0be;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                display: none; /* Simplified for mobile */
+            }
+
+            .search-bar {
+                display: none;
+            }
+
+            .highlight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-container {
+                padding: 0 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                <span>LiveShow</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">热门榜单</a></li>
+                    <li><a href="#">才艺展示</a></li>
+                    <li><a href="#">游戏娱乐</a></li>
+                    <li><a href="#">情感电台</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索女主播、直播间...">
+                <button>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>发现精彩直播世界</h1>
+        <p>汇聚全网热门女主播视频，高清画质，实时互动。无论是才艺表演、游戏开黑还是深夜电台，都能在这里找到你的专属陪伴。</p>
+        <div class="hero-tags">
+            <span class="tag">🎤 零点电台</span>
+            <span class="tag">🎮 游戏高光</span>
+            <span class="tag">💃 才艺教学</span>
+            <span class="tag">🎵 唱歌翻唱</span>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside>
+            <div class="sidebar-card">
+                <div class="sidebar-title">直播分类</div>
+                <ul class="category-list">
+                    <li><a href="#">唱歌跳舞 <span class="live-count">2.3k</span></a></li>
+                    <li><a href="#">游戏竞技 <span class="live-count">1.8k</span></a></li>
+                    <li><a href="#">户外探险 <span class="live-count">850</span></a></li>
+                    <li><a href="#">聊天交友 <span class="live-count">3.1k</span></a></li>
+                    <li><a href="#">影视解说 <span class="live-count">600</span></a></li>
+                    <li><a href="#">颜值PK <span class="live-count">1.2k</span></a></li>
+                    <li><a href="#">ASMR助眠 <span class="live-count">420</span></a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-card">
+                <div class="sidebar-title">热门榜单</div>
+                <ul class="category-list">
+                    <li><a href="#">🔥 周榜第一名：小甜甜</a></li>
+                    <li><a href="#">🔥 月榜冠军：梦梦酱</a></li>
+                    <li><a href="#">⭐ 新人榜：星河</a></li>
+                    <li><a href="#">⭐ 粉丝榜：阿狸</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content-area">
+            
+            <!-- Live Now Section -->
+            <section>
+                <div class="section-header">
+                    <h2>正在直播</h2>
+                    <a href="#" class="more-link">查看全部 ></a>
+                </div>
+                <div class="video-grid">
+                    <!-- Card 1 -->
+                    <article class="video-card">
+                        <div class="thumbnail-container">
+                            <img src="https://picsum.photos/seed/live1/400/225" alt="直播封面" class="thumbnail">
+                            <div class="live-badge"><div class="live-dot"></div>直播中</div>
+                            <div class="duration-badge">LIVE</div>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">深夜电台：聊聊心事，送你一首晚安曲</h3>
+                            <div class="card-meta">
+                                <div class="author-info">
+                                    <img src="https://picsum.photos/seed/avatar1/50/50" alt="头像" class="author-avatar">
+                                    <span class="author-name">林间鹿</span>
+                                </div>
+                                <div class="view-count">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                    12.5k
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="video-card">
+                        <div class="thumbnail-container">
+                            <img src="https://picsum.photos/seed/live2/400/225" alt="直播封面" class="thumbnail">
+                            <div class="live-badge"><div class="live-dot"></div>直播中</div>
+                            <div class="duration-badge">LIVE</div>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">王者荣耀：带粉上分，来点水友车！</h3>
+                            <div class="card-meta">
+                                <div class="author-info">
+                                    <img src="https://picsum.photos/seed/avatar2/50/50" alt="头像" class="author-avatar">
+                                    <span class="author-name">电竞阿喵</span>
+                                </div>
+                                <div class="view-count">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                    8.2k
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="video-card">
+                        <div class="thumbnail-container">
+                            <img src="https://picsum.photos/seed/live3/400/225" alt="直播封面" class="thumbnail">
+                            <div class="live-badge"><div class="live-dot"></div>直播中</div>
+                            <div class="duration-badge">LIVE</div>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">尤克里里教学：学会这首夏日微风</h3>
+                            <div class="card-meta">
+                                <div class="author-info">
+                                    <img src="https://picsum.photos/seed/avatar3/50/50" alt="头像" class="author-avatar">
+                                    <span class="author-name">吉他小妹</span>
+                                </div>
+                                <div class="view-count">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                    5.6k
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="video-card">
+                        <div class="thumbnail-container">
+                            <img src="https://picsum.photos/seed/live4/400/225" alt="直播封面" class="thumbnail">
+                            <div class="live-badge"><div class="live-dot"></div>直播中</div>
+                            <div class="duration-badge">LIVE</div>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">舞室练习打卡：新舞型挑战</h3>
+                            <div class="card-meta">
+                                <div class="author-info">
+                                    <img src="https://picsum.photos/seed/avatar4/50/50" alt="头像" class="author-avatar">
+                                    <span class="author-name">Coco_Dance</span>
+                                </div>
+                                <div class="view-count">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                    3.9k
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Recommended Section -->
+            <section>
+                <div class="section-header">
+                    <h2>为你推荐</h2>
+                    <a href="#" class="more-link">更多推荐 ></a>
+                </div>
+                <div class="highlight-section">
+                    <div class="highlight-grid">
+                        <div class="highlight-card">
+                            <img src="https://picsum.photos/seed/rec1/400/300" alt="推荐视频">
+                            <div class="highlight-overlay">
+                                <div class="highlight-title">自制美食教程：日式拉面</div>
+                                <div class="highlight-subtitle">美食博主：Alice</div>
+                            </div>
+                        </div>
+                        <div class="highlight-card">
+                            <img src="https://picsum.photos/seed/rec2/400/300" alt="推荐视频">
+                            <div class="highlight-overlay">
+                                <div class="highlight-title">猫咪日常：这是什么神仙操作？</div>
+                                <div class="highlight-subtitle">萌宠达人：铲屎官</div>
+                            </div>
+                        </div>
+                        <div class="highlight-card">
+                            <img src="https://picsum.photos/seed/rec3/400/300" alt="推荐视频">
+                            <div class="highlight-overlay">
+                                <div class="highlight-title">周末穿搭分享</div>
+                                <div class="highlight-subtitle">时尚博主：Momo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Latest Updates -->
+            <section>
+                <div class="section-header">
+                    <h2>最新更新</h2>
+                    <a href="#" class="more-link">查看时间线 ></a>
+                </div>
+                <div class="video-grid">
+                    <article class="video-card">
+                        <div class="thumbnail-container">
+                            <img src="https://picsum.photos/seed/last1/400/225" alt="视频封面">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">翻唱《孤勇者》，送给所有追梦人</h3>
+                            <div class="card-meta">
+                                <div class="author-info">
+                                    <img src="https://picsum.photos/seed/avatar5/50/50" alt="头像" class="author-avatar">
+                                    <span class="author-name">音乐小强</span>
+                                </div>
+                                <div class="view-count">1.2万次播放</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="video-card">
+                        <div class="thumbnail-container">
+                            <img src="https://picsum.photos/seed/last2/400/225" alt="视频封面">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">漫谈人生：30岁之前的迷茫与选择</h3>
+                            <div class="card-meta">
+                                <div class="author-info">
+                                    <img src="https://picsum.photos/seed/avatar6/50/50" alt="头像" class="author-avatar">
+                                    <span class="author-name">深夜思考</span>
+                                </div>
+                                <div class="view-count">8,500次播放</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="video-card">
+                        <div class="thumbnail-container">
+                            <img src="https://picsum.photos/seed/last3/400/225" alt="视频封面">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">开箱最新款键盘，手感超棒！</h3>
+                            <div class="card-meta">
+                                <div class="author-info">
+                                    <img src="https://picsum.photos/seed/avatar7/50/50" alt="头像" class="author-avatar">
+                                    <span class="author-name">极客阿杰</span>
+                                </div>
+                                <div class="view-count">5,200次播放</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="video-card">
+                        <div class="thumbnail-container">
+                            <img src="https://picsum.photos/seed/last4/400/225" alt="视频封面">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">健身打卡：第30天，马甲线显现</h3>
+                            <div class="card-meta">
+                                <div class="author-info">
+                                    <img src="https://picsum.photos/seed/avatar8/50/50" alt="头像" class="author-avatar">
+                                    <span class="author-name">FitGirl</span>
+                                </div>
+                                <div class="view-count">3,100次播放</div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>关于我们</h3>
+                <p style="font-size: 13px; line-height: 1.6;">LiveShow 是一个专注于提供高质量女主播视频内容的互动平台。我们致力于打造一个安全、健康、有趣的网络直播社区。</p>
+            </div>
+            <div class="footer-col">
+                <h3>热门频道</h3>
+                <ul>
+                    <li><a href="#">颜值区</a></li>
+                    <li><a href="#">游戏区</a></li>
+                    <li><a href="#">户外区</a></li>
+                    <li><a href="#">ASMR</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>帮助中心</h3>
+                <ul>
+                    <li><a href="#">主播入驻</a></li>
+                    <li><a href="#">用户协议</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#">版权声明</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>联系我们</h3>
+                <ul>
+                    <li><a href="#">商务合作</a></li>
+                    <li><a href="#">举报中心</a></li>
+                    <li><a href="#">客服邮箱</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 LiveShow. All Rights Reserved. 本站内容均来自网络，仅供学习交流使用。</p>
+        </div>
+    </footer>
+
+</body>
+                              </html>
