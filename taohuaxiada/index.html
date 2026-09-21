@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="桃花侠大战菊花怪官方网站，提供最新漫画连载、高清大图欣赏、角色图鉴、同人创作及粉丝社区互动。">
+    <meta name="keywords" content="桃花侠大战菊花怪, 桃花侠大战菊花怪漫画, 桃花侠大战菊花怪在线阅读, 桃花侠大战菊花怪图鉴">
+    <title>桃花侠大战菊花怪-热血爆笑漫画连载与同人图鉴</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+            --accent-color: #ffe66d;
+            --dark-bg: #2d3436;
+            --light-bg: #f7f9fc;
+            --text-main: #2d3436;
+            --text-sub: #636e72;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --radius: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部导航 */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo span {
+            background: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .search-btn {
+            background: var(--light-bg);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            color: var(--text-sub);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-bg);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-sub);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .stat-item strong {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .stat-item span {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        /* 主要内容区 */
+        .main-content {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        /* 漫画列表区 */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 70%;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .comic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .comic-card {
+            background: #fff;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s;
+            position: relative;
+        }
+
+        .comic-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .comic-cover {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background: #eee;
+        }
+
+        .comic-info {
+            padding: 15px;
+        }
+
+        .comic-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .comic-meta {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .badge {
+            background: var(--secondary-color);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        .badge.hot { background: var(--primary-color); }
+
+        /* 侧边栏 */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--card-shadow);
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--light-bg);
+            padding-bottom: 10px;
+        }
+
+        .rank-list li {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .rank-num {
+            width: 25px;
+            height: 25px;
+            background: var(--light-bg);
+            color: var(--text-sub);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            font-size: 0.85rem;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .rank-list li:nth-child(1) .rank-num { background: #ff6b6b; color: white; }
+        .rank-list li:nth-child(2) .rank-num { background: #ff9f43; color: white; }
+        .rank-list li:nth-child(3) .rank-num { background: #feca57; color: white; }
+
+        .rank-name {
+            flex: 1;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 角色图鉴 */
+        .character-section {
+            background: #fff;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--card-shadow);
+            margin-bottom: 60px;
+        }
+
+        .char-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .char-card {
+            text-align: center;
+        }
+
+        .char-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            object-fit: cover;
+            border: 4px solid var(--light-bg);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .char-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .char-role {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .char-desc {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--dark-bg);
+            color: #b2bec3;
+            padding: 50px 0 20px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">
+                <span>NEW</span> 桃花侠大战菊花怪
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">最新章节</a></li>
+                    <li><a href="#">角色图鉴</a></li>
+                    <li><a href="#">同人专区</a></li>
+                    <li><a href="#">下载APP</a></li>
+                </ul>
+            </nav>
+            <button class="search-btn">🔍 搜索</button>
+        </div>
+    </header>
+
+    <!-- 首屏 Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>桃花侠大战菊花怪</h1>
+            <p>当江湖奇侠遇上神秘变异，一段爆笑又热血的传说由此展开。点击下方查看最新连载与高清大图。</p>
+            <div style="margin-top: 20px;">
+                <a href="#" style="background: var(--dark-bg); color: white; padding: 12px 30px; border-radius: 25px; font-weight: bold; display: inline-block;">立即阅读</a>
+                <a href="#" style="background: white; color: var(--dark-bg); padding: 12px 30px; border-radius: 25px; font-weight: bold; display: inline-block; margin-left: 10px;">加入书架</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <strong>500+</strong>
+                    <span>精彩章节</span>
+                </div>
+                <div class="stat-item">
+                    <strong>120万</strong>
+                    <span>累计阅读</span>
+                </div>
+                <div class="stat-item">
+                    <strong>4.9</strong>
+                    <span>粉丝评分</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主体内容 -->
+    <main class="container main-content">
+        
+        <!-- 左侧：漫画列表 -->
+        <section class="comic-section">
+            <div class="section-header">
+                <h2 class="section-title">热门连载</h2>
+                <a href="#" style="color: var(--primary-color); font-size: 0.9rem;">查看全部 ></a>
+            </div>
+
+            <div class="comic-grid">
+                <!-- 卡片 1 -->
+                <article class="comic-card">
+                    <img src="https://picsum.photos/seed/comic1/300/420" alt="桃花侠大战菊花怪封面" class="comic-cover">
+                    <div class="comic-info">
+                        <h3 class="comic-title">桃花侠大战菊花怪：决战紫禁之巅</h3>
+                        <div class="comic-meta">
+                            <span>第 482 章</span>
+                            <span class="badge hot">连载中</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片 2 -->
+                <article class="comic-card">
+                    <img src="https://picsum.photos/seed/comic2/300/420" alt="桃花侠大战菊花怪封面" class="comic-cover">
+                    <div class="comic-info">
+                        <h3 class="comic-title">桃花侠大战菊花怪：前传之谜</h3>
+                        <div class="comic-meta">
+                            <span>第 15 章</span>
+                            <span class="badge">独家</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片 3 -->
+                <article class="comic-card">
+                    <img src="https://picsum.photos/seed/comic3/300/420" alt="桃花侠大战菊花怪封面" class="comic-cover">
+                    <div class="comic-info">
+                        <h3 class="comic-title">桃花侠大战菊花怪：番外篇</h3>
+                        <div class="comic-meta">
+                            <span>特别篇</span>
+                            <span class="badge">轻松</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片 4 -->
+                <article class="comic-card">
+                    <img src="https://picsum.photos/seed/comic4/300/420" alt="桃花侠大战菊花怪封面" class="comic-cover">
+                    <div class="comic-info">
+                        <h3 class="comic-title">桃花侠大战菊花怪：剧场版</h3>
+                        <div class="comic-meta">
+                            <span>长篇</span>
+                            <span class="badge">热门</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- 分类导航 -->
+            <div style="margin-top: 40px; display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="#" class="badge" style="background: #dfe6e9; color: #2d3436; padding: 8px 16px; border-radius: 20px;">全部</a>
+                <a href="#" class="badge" style="background: var(--secondary-color); color: white; padding: 8px 16px; border-radius: 20px;">热血</a>
+                <a href="#" class="badge" style="background: var(--secondary-color); color: white; padding: 8px 16px; border-radius: 20px;">搞笑</a>
+                <a href="#" class="badge" style="background: var(--secondary-color); color: white; padding: 8px 16px; border-radius: 20px;">冒险</a>
+                <a href="#" class="badge" style="background: var(--secondary-color); color: white; padding: 8px 16px; border-radius: 20px;">同人</a>
+            </div>
+        </section>
+
+        <!-- 右侧：侧边栏 -->
+        <aside>
+            <!-- 热门榜单 -->
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">本周人气榜</h3>
+                <ul class="rank-list">
+                    <li>
+                        <span class="rank-num">1</span>
+                        <span class="rank-name">决战紫禁之巅</span>
+                    </li>
+                    <li>
+                        <span class="rank-num">2</span>
+                        <span class="rank-name">桃花侠的逆袭</span>
+                    </li>
+                    <li>
+                        <span class="rank-num">3</span>
+                        <span class="rank-name">菊花怪的阴谋</span>
+                    </li>
+                    <li>
+                        <span class="rank-num">4</span>
+                        <span class="rank-name">江湖夜雨</span>
+                    </li>
+                    <li>
+                        <span class="rank-num">5</span>
+                        <span class="rank-name">桃花源记</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 角色推荐 -->
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">人气角色</h3>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <img src="https://picsum.photos/seed/char1/60/60" alt="角色" style="border-radius: 50%; border: 2px solid #eee;">
+                    <img src="https://picsum.photos/seed/char2/60/60" alt="角色" style="border-radius: 50%; border: 2px solid #eee;">
+                    <img src="https://picsum.photos/seed/char3/60/60" alt="角色" style="border-radius: 50%; border: 2px solid #eee;">
+                    <img src="https://picsum.photos/seed/char4/60/60" alt="角色" style="border-radius: 50%; border: 2px solid #eee;">
+                    <div style="width: 60px; height: 60px; border-radius: 50%; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #666;">+50</div>
+                </div>
+            </div>
+
+            <!-- 广告位占位 -->
+            <div class="sidebar-card" style="background: #ffeaa7; text-align: center; padding: 30px 20px;">
+                <h4 style="margin-bottom: 10px;">加入社区</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 15px;">与百万粉丝一起讨论剧情</p>
+                <button style="background: var(--dark-bg); color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer;">立即加入</button>
+            </div>
+        </aside>
+    </main>
+
+    <!-- 角色图鉴专区 -->
+    <section class="container character-section">
+        <div class="section-header">
+            <h2 class="section-title">核心角色图鉴</h2>
+        </div>
+        <div class="char-grid">
+            <div class="char-card">
+                <img src="https://picsum.photos/seed/hero/200/200" alt="桃花侠" class="char-avatar">
+                <h3 class="char-name">桃花侠</h3>
+                <p class="char-role">主角 / 桃花派传人</p>
+                <p class="char-desc">身怀绝世武功，却总是因为桃花运而陷入各种麻烦，性格乐观正义，是守护江湖和平的关键人物。</p>
+            </div>
+            <div class="char-card">
+                <img src="https://picsum.photos/seed/villain/200/200" alt="菊花怪" class="char-avatar">
+                <h3 class="char-name">菊花怪</h3>
+                <p class="char-role">反派 / 混沌魔王</p>
+                <p class="char-desc">外表滑稽但实力深不可测的变异生物，意图将整个江湖染成紫色，是桃花侠最大的宿敌。</p>
+            </div>
+            <div class="char-card">
+                <img src="https://picsum.photos/seed/sidekick/200/200" alt="小桃" class="char-avatar">
+                <h3 class="char-name">小桃</h3>
+                <p class="char-role">伙伴 / 智囊</p>
+                <p class="char-desc">桃花侠的义妹，机智过人，擅长机关术，是团队中不可或缺的智囊担当。</p>
+            </div>
+            <div class="char-card">
+                <img src="https://picsum.photos/seed/ally/200/200" alt="隐士" class="char-avatar">
+                <h3 class="char-name">扫地僧</h3>
+                <p class="char-role">神秘长者</p>
+                <p class="char-desc">看似普通的寺中僧人，实则是隐退江湖的绝世高手，暗中指点桃花侠修炼。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>关于作品</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.8;">《桃花侠大战菊花怪》是一部融合了传统武侠与荒诞幽默的现代网络漫画。讲述了一位桃花侠与神秘变异生物菊花怪之间跨越生死的恩怨情仇。</p>
+                </div>
+                <div class="footer-col">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#">漫画首页</a></li>
+                        <li><a href="#">更新日历</a></li>
+                        <li><a href="#">角色图鉴</a></li>
+                        <li><a href="#">投稿指南</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>法律声明</h3>
+                    <ul>
+                        <li><a href="#">用户协议</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">版权声明</a></li>
+                        <li><a href="#">侵权投诉</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>关注我们</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 10px;">官方微博 / 官方微信</p>
+                    <p style="font-size: 0.85rem; color: #636e72;">每日更新，精彩不断</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 桃花侠大战菊花怪官方站. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
